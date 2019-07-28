@@ -1,5 +1,6 @@
 from flask import *
-import sqlite3, security,mailing
+import sqlite3, security
+#import mailing
 
 UPLOAD_FOLDER = 'static/images/'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
