@@ -1,0 +1,19 @@
+<div id="riicc-nav" class="">
+  <img src="{{ url_for('static',filename='images/clubimg.png') }}" style="width: 55px;">
+  <p id="club-logo" style="font-family: 'Open Sans', sans-serif;"><b><a class="hidethis" href="/">RI-Infocomm</a></b></p>
+  <div>
+    <span id="tab1" class="riicc-tab"><a class="hidethis" href="/about">About</a></span>
+    <span id="tab2" class="riicc-tab"><a class="hidethis" href="/members">People</a></span>
+    <span id="tab3" class="riicc-tab"><a class="hidethis" href="/">Blog posts</a></span>
+    <span id="tab4" class="riicc-tab"><a class="hidethis" href="/project">Projects</a></span>
+    
+    {% if login == False %}
+    <span class="riicc-signin"><a class="hidethis" href="/login">Login</a></span>
+    {% else %}
+    <span class="riicc-signin riicc-username"><a class="hidethis" href="/dashboard">{{username}}</a></span>
+    {% endif %}
+  </div>
+</div>
+<script type="text/javascript">
+  $('{{activetab}}').addClass("active-riicc-tab");
+</script>

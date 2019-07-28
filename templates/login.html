@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			{% include 'head.html' %}
+		</head>
+
+		<body>
+			<div class="row">
+				<div class="col s12 valign-wrapper" style="padding: 20px;">
+					<img src="../static/images/clubimg.png" style="width: 55px;margin:0px;">
+					<p style="display: inline;font-size: 25px;margin: 0px 0px 0px 10px;">RI-Infocomm</p>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col s12 m10 l6 offset-m1 offset-l3">
+
+						<div class="row" style="margin-top: 2.5vh;">
+							<div class="col s12" style="text-align: center;">
+								<p style="font-family: 'Open Sans', sans-serif;font-size: 45px;margin: 0;"><b>Hello</b></p>
+								<p style="margin: 0px 0px 35px 0px;">Please sign in to your account, or sign up <a href="/signup" style="color:#0654ba;">here</a></p>
+							</div>
+
+							<form action="/login" method="post">
+								<div class="row" style="margin-bottom: 10px;">
+									<div class="col s10 m8 offset-s1 offset-m2">
+											<label style="color: rgb(21, 30, 39);">Username/Email</label>
+								          	<input tabindex="1" style="height:25px;font-size: 15px !important;" id="riicc-username" name="usr" type="text" class="validate">
+										
+									</div>
+								</div>
+								<div class="row">
+									<div class="col s10 m8 offset-s1 offset-m2">
+											<label style="color: rgb(21, 30, 39);">Password</label>
+								          	<input tabindex="2" style="height:25px;font-size: 15px !important;" id="riicc-password" name="pw" type="password" class="validate">
+									</div>
+								</div>
+								<center>
+								<div class="row">
+									<div class="col s10 m8 offset-s1 offset-m2">
+										<p><label><input name="rme" tabindex="3" type="checkbox"/><span style="padding-left: 25px;font-family: 'Open Sans', sans-serif;">Remember me</span></label></p>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col s10 m8 offset-s1 offset-m2">
+									
+										<button tabindex="4" style="width: 50%" class="btn waves-effect waves-light" type="submit" id="submitbutton" name="action">Submit<i class="material-icons right">send</i></button>
+									
+									</div>
+								</div>
+								</center>
+							</form>
+
+								<div id="error-display" style="display: none;padding: 5px;" class="row">
+									<div class="red lighten-3 col s10 m8 offset-s1 offset-m2" style="border-radius: 5px;">
+										<p style="margin: 8px 0px 8px 0px;">Error: <span id="error-msg"></span></p>
+									</div>
+								</div>
+
+								<script type="text/javascript">
+
+									function validate() {
+										if ($("#riicc-username").val() == "" || $("#riicc-password").val() == "") {
+											return false;
+										} else {
+											return true;
+										}
+									}
+
+									$(window).keydown(function(event){
+									    if(event.keyCode == 13 && validate() == false) {
+									      event.preventDefault();
+									      return false;
+									    }
+									});
+
+									$("#submitbutton").click(function() {
+										if (validate() == false) {
+											document.getElementById('error-msg').innerHTML = "Empty fields";
+											document.getElementById("error-display").style.display = "inline";
+											event.preventDefault();
+									    	return false;
+										}
+									});
+
+									{% if failed == 1 %}
+										document.getElementById('error-msg').innerHTML = "Please confirm your email first";
+										document.getElementById("error-display").style.display = "inline";
+									{% endif %}
+
+									{% if failed == 2 %}
+										document.getElementById('error-msg').innerHTML = "Invalid username/password";
+										document.getElementById("error-display").style.display = "inline";
+									{% endif %}
+
+								</script>
+						</div>
+				</div>
+			</div>
+		</div>
+		</body>
+	</html>
